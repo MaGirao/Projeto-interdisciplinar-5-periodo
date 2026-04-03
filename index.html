@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mente+Manaus | Plataforma de Bem-Estar Emocional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand__icon">❤</div>
+          <div>
+            <strong>Mente+Manaus</strong>
+            <span>Apoio emocional jovem</span>
+          </div>
+        </div>
+
+        <nav class="menu">
+          <button class="menu__item active" data-route="dashboard">Dashboard</button>
+          <button class="menu__item" data-route="conteudos">Conteúdos</button>
+          <button class="menu__item" data-route="autoavaliacao">Autoavaliação</button>
+          <button class="menu__item" data-route="agendamentos">Agendamento CAPS</button>
+        </nav>
+
+        <section class="sidebar__card">
+          <h3>Lembrete de cuidado</h3>
+          <p>
+            Este protótipo é educativo. Em situações de urgência, procure o CAPS,
+            uma UBS ou o SAMU 192.
+          </p>
+        </section>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Plataforma digital de apoio emocional</p>
+            <h1 id="page-title">Dashboard</h1>
+          </div>
+
+          <div class="topbar__actions">
+            <button id="logout-button" class="primary-button small" type="button">Sair</button>
+          </div>
+        </header>
+
+        <section id="auth-screen" class="screen auth-screen visible">
+          <div class="auth-card">
+            <div class="auth-card__icon">❤</div>
+            <h2 id="auth-title">Acesso à Plataforma</h2>
+            <p id="auth-subtitle">Sua jornada de bem-estar começa aqui.</p>
+
+            <form id="auth-form" class="form-grid">
+              <div class="field" data-mode="register">
+                <label for="register-name">Nome completo</label>
+                <input id="register-name" name="registerName" type="text" placeholder="Seu nome" />
+              </div>
+
+              <div class="field">
+                <label for="auth-email">E-mail</label>
+                <input id="auth-email" name="email" type="email" placeholder="seu@email.com" required />
+              </div>
+
+              <div class="field">
+                <label for="auth-password">Senha</label>
+                <div class="input-with-action">
+                  <input id="auth-password" name="password" type="password" placeholder="Digite sua senha" required />
+                  <button id="toggle-password" type="button" class="icon-button">Mostrar</button>
+                </div>
+              </div>
+
+              <div class="field" data-mode="register">
+                <label for="register-age">Idade</label>
+                <input id="register-age" name="age" type="number" min="12" max="29" placeholder="Ex: 17" />
+              </div>
+
+              <div class="field" data-mode="register">
+                <label for="register-neighborhood">Bairro</label>
+                <input id="register-neighborhood" name="neighborhood" type="text" placeholder="Ex: Parque 10" />
+              </div>
+
+              <div class="field checkbox-row">
+                <label class="checkbox">
+                  <input id="remember-me" name="remember" type="checkbox" />
+                  <span>Lembrar de mim</span>
+                </label>
+                <button id="forgot-password" type="button" class="link-button">Esqueci a senha</button>
+              </div>
+
+              <button class="primary-button" type="submit" id="auth-submit">Entrar</button>
+            </form>
+
+            <p class="auth-card__switch">
+              <span id="auth-switch-label">Não tem uma conta?</span>
+              <button id="auth-switch" type="button" class="link-button">Criar conta</button>
+            </p>
+
+            <p class="tiny-note">Seus dados ficam salvos apenas neste navegador para fins de protótipo.</p>
+            <div id="auth-feedback" class="feedback" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section id="app-screen" class="screen">
+          <section id="dashboard-view" class="view visible">
+            <div class="hero-card">
+              <div class="hero-card__badge">Acolhimento digital</div>
+              <h2>Plataforma de apoio ao bem-estar emocional de jovens</h2>
+              <p>
+                Acesse conteúdos confiáveis, acompanhe sua autoavaliação emocional
+                e organize atendimentos simulados nos CAPS de Manaus.
+              </p>
+              <div class="hero-card__actions">
+                <button class="primary-button" type="button" data-go="conteudos">Explorar conteúdos</button>
+                <button class="ghost-button" type="button" data-go="agendamentos">Agendar atendimento</button>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <article class="stat-card">
+                <span>Usuário</span>
+                <strong id="profile-name">Visitante</strong>
+                <p id="profile-meta">Faça login para personalizar sua experiência.</p>
+              </article>
+              <article class="stat-card">
+                <span>Última autoavaliação</span>
+                <strong id="last-assessment">Ainda não realizada</strong>
+                <p id="assessment-score">Sem pontuação registrada.</p>
+              </article>
+              <article class="stat-card">
+                <span>Próximo agendamento</span>
+                <strong id="next-appointment">Nenhum horário marcado</strong>
+                <p id="next-appointment-meta">Escolha um CAPS e um horário disponível.</p>
+              </article>
+            </div>
+
+            <div class="feature-grid">
+              <article class="feature-card">
+                <h3>Conteúdos informativos</h3>
+                <p>Filtre por tema, pesquise e leia materiais rápidos sobre saúde mental.</p>
+                <button type="button" class="link-button" data-go="conteudos">Abrir conteúdos</button>
+              </article>
+              <article class="feature-card">
+                <h3>Autoavaliação emocional</h3>
+                <p>Responda perguntas curtas para acompanhar sinais de bem-estar e alerta.</p>
+                <button type="button" class="link-button" data-go="autoavaliacao">Iniciar teste</button>
+              </article>
+              <article class="feature-card">
+                <h3>Agendamento CAPS</h3>
+                <p>Simule um pedido de acolhimento em unidades de referência em Manaus.</p>
+                <button type="button" class="link-button" data-go="agendamentos">Ver horários</button>
+              </article>
+            </div>
+          </section>
+
+          <section id="conteudos-view" class="view">
+            <div class="panel">
+              <div class="panel__header">
+                <div>
+                  <p class="eyebrow">Biblioteca de apoio</p>
+                  <h2>Cuidando da sua mente</h2>
+                </div>
+                <div class="search-box">
+                  <input id="content-search" type="search" placeholder="Pesquisar conteúdos..." />
+                </div>
+              </div>
+
+              <div id="content-filters" class="chip-row"></div>
+              <div id="content-grid" class="content-grid"></div>
+            </div>
+          </section>
+
+          <section id="autoavaliacao-view" class="view">
+            <div class="assessment-layout">
+              <div class="panel">
+                <div class="panel__header">
+                  <div>
+                    <p class="eyebrow">Questionário rápido</p>
+                    <h2>Autoavaliação emocional</h2>
+                  </div>
+                  <span id="assessment-progress-label">1 de 5</span>
+                </div>
+
+                <div class="progress-bar">
+                  <div id="assessment-progress" class="progress-bar__fill"></div>
+                </div>
+
+                <div id="assessment-card" class="assessment-card"></div>
+                <div id="assessment-feedback" class="feedback" role="status" aria-live="polite"></div>
+              </div>
+
+              <aside class="panel panel--soft">
+                <h3>Como interpretar</h3>
+                <p>
+                  O resultado é apenas indicativo e não substitui acolhimento
+                  profissional. Se perceber sofrimento intenso, procure ajuda.
+                </p>
+                <div id="assessment-history" class="history-list"></div>
+              </aside>
+            </div>
+          </section>
+
+          <section id="agendamentos-view" class="view">
+            <div class="schedule-layout">
+              <div class="panel">
+                <div class="panel__header">
+                  <div>
+                    <p class="eyebrow">Agendamento psicossocial</p>
+                    <h2>Organize seu acolhimento no CAPS</h2>
+                  </div>
+                  <span class="tag">Simulação funcional</span>
+                </div>
+
+                <form id="schedule-form" class="form-grid">
+                  <div class="field">
+                    <label for="schedule-unit">Unidade CAPS</label>
+                    <select id="schedule-unit" name="unit" required></select>
+                  </div>
+
+                  <div class="field">
+                    <label for="schedule-date">Data preferencial</label>
+                    <input id="schedule-date" name="date" type="date" required />
+                  </div>
+
+                  <div class="field">
+                    <label for="schedule-specialty">Tipo de atendimento</label>
+                    <select id="schedule-specialty" name="specialty" required>
+                      <option value="">Selecione</option>
+                      <option value="acolhimento-inicial">Acolhimento inicial</option>
+                      <option value="psicologia">Escuta com psicologia</option>
+                      <option value="servico-social">Atendimento social</option>
+                      <option value="orientacao-familiar">Orientação familiar</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="schedule-shift">Turno</label>
+                    <select id="schedule-shift" name="shift" required>
+                      <option value="">Selecione</option>
+                      <option value="manha">Manhã</option>
+                      <option value="tarde">Tarde</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label for="schedule-notes">Observações</label>
+                    <textarea
+                      id="schedule-notes"
+                      name="notes"
+                      rows="4"
+                      placeholder="Conte brevemente o motivo do agendamento."
+                    ></textarea>
+                  </div>
+                </form>
+
+                <div id="schedule-unit-info" class="appointment-card"></div>
+
+                <div>
+                  <h3>Horários disponíveis</h3>
+                  <div id="time-slots" class="time-slots"></div>
+                </div>
+
+                <button id="schedule-submit" class="primary-button" type="button">Confirmar agendamento</button>
+                <div id="schedule-feedback" class="feedback" role="status" aria-live="polite"></div>
+              </div>
+
+              <aside class="panel panel--soft">
+                <h3>Meus agendamentos</h3>
+                <div id="appointments-list" class="appointments-list"></div>
+              </aside>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="content-modal" class="modal">
+      <article class="modal__card">
+        <button id="close-modal" class="icon-button modal__close" type="button">Fechar</button>
+        <div id="modal-body"></div>
+      </article>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
